@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Project Twittler</title>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
   <body>
+  
+    <!-- set interval to refresh the page/ see new tweets -->
+    <script type="text/javascript">
+      setTimeout(function(){
+      location = ''
+      },3000)
+    </script>
+
     <script>
 
       $(document).ready(function(){
+        
         var $body = $('body');
         $body.html('');
 
@@ -15,9 +25,40 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+
+
+          var person =   tweet.user ;
+          var timeOfTweat = tweet.created_at;
+          var message = tweet.message;
+          //implementing a timestamp into the tweets.
+          $tweet.text('@' +  person + ': ' + timeOfTweat+ " "+ message);
           $tweet.appendTo($body);
           index -= 1;
+
+          $( "person" ).click(function() {
+            alert( "Handler for .click() called." );
+          });
+        
+
+          //CSS and clolor schemes and stuff, making it pretty.
+        var cssColorNames = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGrey","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"];
+
+          
+          var randCol = function(){
+            return randomElement(cssColorNames);
+          };
+
+        //$("div").css("background-color","#ff0000");
+        $("div").css("background-color",randCol);
+        $("div").css("text-align", "center");
+        $("body").css("background-color",randCol);
+        $("body").css("margin-top","200px");
+        $("div").css("margin-left", "200px");
+        $("div").css("margin-right", "200px");
+        $("div").css("border-radius", "200px");
+        $("body").css("border-radius", "20px");
+
+        
         }
 
       });
